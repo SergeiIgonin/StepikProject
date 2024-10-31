@@ -94,7 +94,6 @@ def test_guest_cant_see_product_in_cart_opened_from_product_page(driver):
     product_page = ProductPage(driver, url)
     product_page.open()
     product_page.go_to_cart()
-    time.sleep(20)
     cart_page = CartPage(driver, driver.current_url)
     cart_page.present_text_about_empty_cart()
     cart_page.is_cart_empty()
