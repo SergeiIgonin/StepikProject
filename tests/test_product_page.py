@@ -117,7 +117,6 @@ class TestUserAddToCartFromProductPage:
         url = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
         product_page = ProductPage(driver, url)
         product_page.open()
-        time.sleep(5)
         product_page.should_be_button_add_to_cart()
         product_page.add_product_to_cart()
         product_page.should_be_correct_product_name()
