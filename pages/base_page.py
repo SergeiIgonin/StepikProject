@@ -1,5 +1,4 @@
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.chrome.webdriver import WebDriver   # аннотация драйвера (для дальнейшего автоподставления его методов)
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,7 +8,7 @@ from pages.locators import BasePageLocators
 class BasePage:
     'Инициализация объекта драйвера и url для любых страниц'
     def __init__(self, driver, url):
-        self.driver: WebDriver = driver  # так Selenium поймет, что driver это экземпляр класса WebDriver (для автоподставления его методов)
+        self.driver: WebDriver = driver  # так Pycharm поймет, что driver это экземпляр класса WebDriver (для автоподставления его методов)
         self.url = url
 
     'Проверка присутствия элемента на странице'

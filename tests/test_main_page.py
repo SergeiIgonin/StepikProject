@@ -4,10 +4,12 @@ from pages.login_page import LoginPage
 from pages.main_page import MainPage
 
 
+@pytest.mark.smoke
 @pytest.mark.login_guest
 class TestLoginFromMainPage():
 
     'Пример проверочного метода с переключением на др. стр. (т.е. поочередная работа со стр.)'
+
     def test_guest_can_go_to_login_page_from_login_page(self, driver):      # в атрибут передаем фикстуру 'driver' из conftest.py
         url = "http://selenium1py.pythonanywhere.com/"
         main_page = MainPage(driver, url)
