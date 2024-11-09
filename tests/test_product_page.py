@@ -1,10 +1,11 @@
-import pytest, time
+import pytest
 from pages.product_page import ProductPage
 from pages.login_page import LoginPage
 from pages.cart_page import CartPage
+import time
 
 
-@pytest.mark.smoke
+@pytest.mark.need_review
 def test_guest_can_add_product_to_cart(driver):
     url = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
     url2 = "https://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/?promo=newYear2019"
@@ -51,7 +52,7 @@ def test_guest_should_see_login_link_on_product_page(driver):
     product_page.should_be_login_link()
 
 
-@pytest.mark.smoke
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(driver):
     url = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     product_page = ProductPage(driver, url)
@@ -73,10 +74,7 @@ params = [
     "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
     "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"
 ]
-# Более короткий способ параметризации:
-# @pytest.mark.parametrize('promo_offer', ["0","1", "3", "4", "5", "6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"])
-# def test_guest_can_add_product_to_cart_with_param(browser, promo_offer):
-#     link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{promo_offer}"
+
 
 @pytest.mark.parametrize('param', params)
 def test_guest_can_add_product_to_cart_with_param(driver, param):
@@ -90,12 +88,13 @@ def test_guest_can_add_product_to_cart_with_param(driver, param):
     product_page.should_be_correct_product_price()
 
 
-@pytest.mark.smoke
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_cart_opened_from_product_page(driver):
     url = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
     product_page = ProductPage(driver, url)
     product_page.open()
     product_page.go_to_cart()
+    time.sleep(20)
     cart_page = CartPage(driver, driver.current_url)
     cart_page.present_text_about_empty_cart()
     cart_page.is_cart_empty()
@@ -114,7 +113,7 @@ class TestUserAddToCartFromProductPage:
         login_page.register_new_user(email, password)  # в аргументах передаем переменные (они же входящие параметры для вызываемого метода)
         login_page.should_be_authorized_user()
 
-    @pytest.mark.smoke
+    @pytest.mark.need_review
     def test_user_can_add_product_to_cart(self, driver):
         url = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
         product_page = ProductPage(driver, url)
