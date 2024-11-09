@@ -5,7 +5,7 @@ from pages.cart_page import CartPage
 import time
 
 
-@pytest.mark.need_review
+@pytest.mark.smoke
 def test_guest_can_add_product_to_cart(driver):
     url = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
     url2 = "https://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/?promo=newYear2019"
@@ -52,7 +52,7 @@ def test_guest_should_see_login_link_on_product_page(driver):
     product_page.should_be_login_link()
 
 
-@pytest.mark.need_review
+@pytest.mark.smoke
 def test_guest_can_go_to_login_page_from_product_page(driver):
     url = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
     product_page = ProductPage(driver, url)
@@ -88,7 +88,7 @@ def test_guest_can_add_product_to_cart_with_param(driver, param):
     product_page.should_be_correct_product_price()
 
 
-@pytest.mark.need_review
+@pytest.mark.smoke
 def test_guest_cant_see_product_in_cart_opened_from_product_page(driver):
     url = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
     product_page = ProductPage(driver, url)
@@ -113,7 +113,7 @@ class TestUserAddToCartFromProductPage:
         login_page.register_new_user(email, password)  # в аргументах передаем переменные (они же входящие параметры для вызываемого метода)
         login_page.should_be_authorized_user()
 
-    @pytest.mark.need_review
+    @pytest.mark.smoke
     def test_user_can_add_product_to_cart(self, driver):
         url = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
         product_page = ProductPage(driver, url)

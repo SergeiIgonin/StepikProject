@@ -4,6 +4,7 @@ from pages.login_page import LoginPage
 from pages.main_page import MainPage
 
 
+@pytest.mark.smoke
 @pytest.mark.login_guest
 class TestLoginFromMainPage():
 
