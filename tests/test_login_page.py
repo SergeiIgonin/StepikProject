@@ -1,8 +1,6 @@
 from pages.login_page import LoginPage
-import pytest
 
 
-@pytest.mark.smoke
 def test_should_be_login_page(driver):
     url = "http://selenium1py.pythonanywhere.com/ru/accounts/login/"
     login_page = LoginPage(driver, url)
