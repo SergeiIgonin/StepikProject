@@ -11,7 +11,7 @@ on:                                           # условия запуска т
         type: choice
         options:
           - smoke_tests
-          - regular_tests
+          - regression_tests
 
 
 jobs:                                         # задания (алгоритм запуска тестов)
@@ -32,6 +32,6 @@ jobs:                                         # задания (алгоритм
         - name: smoke_tests
           if: "github.event.inputs.deployment_target == 'smoke_tests'"
           run: pytest -vm smoke
-        - name: regular_tests
+        - name: regression_tests
           if: "github.event.inputs.deployment_target == 'regular_tests'"
           run: pytest -v
