@@ -64,7 +64,7 @@ params = ["6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"]
 
 
 @pytest.mark.parametrize('param', params)
-def test_multioffers(driver, param):
+def test_guest_can_add_product_to_cart(driver, param):
     url = f"http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/?promo=offer{param}"
     product_page = ProductPage(driver, url)
     product_page.open()
