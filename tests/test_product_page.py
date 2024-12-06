@@ -59,10 +59,7 @@ def test_guest_can_go_to_login_page_from_product_page(driver):
     product_page.go_to_login_page()
 
 
-'Запуск параметризованного теста'
 params = ["6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"]
-
-
 @pytest.mark.parametrize('param', params)
 def test_guest_can_add_product_to_cart(driver, param):
     url = f"http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/?promo=offer{param}"
