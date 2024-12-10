@@ -7,7 +7,7 @@ import time
 
 @pytest.mark.smoke
 def test_guest_can_add_product_to_cart(driver):
-    url = "https://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/?promo=newYear2019"
+    url = "https://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
     product_page = ProductPage(driver, url)
     product_page.open()
     product_page.should_be_button_add_to_cart()
@@ -45,7 +45,7 @@ def test_message_disappeared_after_adding_product_to_cart(driver):
 
 
 def test_guest_should_see_login_link_on_product_page(driver):
-    url = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    url = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
     product_page = ProductPage(driver, url)
     product_page.open()
     product_page.should_be_login_link()
@@ -53,7 +53,7 @@ def test_guest_should_see_login_link_on_product_page(driver):
 
 @pytest.mark.smoke
 def test_guest_can_go_to_login_page_from_product_page(driver):
-    url = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+    url = "http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/"
     product_page = ProductPage(driver, url)
     product_page.open()
     product_page.go_to_login_page()
@@ -62,7 +62,7 @@ def test_guest_can_go_to_login_page_from_product_page(driver):
 params = ["6", pytest.param("7", marks=pytest.mark.xfail), "8", "9"]
 @pytest.mark.parametrize('param', params)
 def test_guest_can_add_product_to_cart(driver, param):
-    url = f"http://selenium1py.pythonanywhere.com/ru/catalogue/coders-at-work_207/?promo=offer{param}"
+    url = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{param}"
     product_page = ProductPage(driver, url)
     product_page.open()
     product_page.should_be_button_add_to_cart()
@@ -88,7 +88,7 @@ class TestUserAddToCartFromProductPage:
 
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, driver):
-        url = "https://selenium1py.pythonanywhere.com/ru/accounts/login/"
+        url = "https://selenium1py.pythonanywhere.com/accounts/login/"
         email = str(time.time()) + "@fakemail.org"
         password = str(time.time()) + "Qw!"
         login_page = LoginPage(driver, url)
@@ -104,6 +104,7 @@ class TestUserAddToCartFromProductPage:
         time.sleep(5)
         product_page.should_be_button_add_to_cart()
         product_page.add_product_to_cart()
+        product_page.solve_quiz_and_get_code()
         product_page.should_be_correct_product_name()
         product_page.should_be_correct_product_price()
 
