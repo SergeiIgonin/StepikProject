@@ -24,11 +24,11 @@ class TestLoginFromMainPage():
         main_page.should_be_login_link()
 
 
-def test_guest_cant_see_product_in_cart_opened_from_main_page(driver):  # для функций вне классов не нужно передавать параметр self
-    url = "http://selenium1py.pythonanywhere.com/"
-    main_page = MainPage(driver, url)
-    main_page.open()
-    main_page.go_to_cart()
-    cart_page = CartPage(driver, driver.current_url)
-    cart_page.present_text_about_empty_cart()
-    cart_page.is_cart_empty()
+    def test_guest_cant_see_product_in_cart_opened_from_main_page(driver):  # для функций вне классов не нужно передавать параметр self
+        url = "http://selenium1py.pythonanywhere.com/"
+        main_page = MainPage(driver, url)
+        main_page.open()
+        main_page.go_to_cart()
+        cart_page = CartPage(driver, driver.current_url)
+        cart_page.present_text_about_empty_cart()
+        cart_page.is_cart_empty()
